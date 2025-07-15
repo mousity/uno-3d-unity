@@ -13,7 +13,7 @@ public class CardSpawner : MonoBehaviour
     void Start()
     {
         // Function to draw random card once for testing
-        DrawRandomCard();
+        // DrawRandomCard();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class CardSpawner : MonoBehaviour
     }
 
 
-    void DrawRandomCard()
+    public GameObject DrawRandomCard()
     {
         // Generate random index to pick out a card in the list
         int index = Random.Range(0, deck.Count);
@@ -37,5 +37,6 @@ public class CardSpawner : MonoBehaviour
         newCard.name = card.type.ToString() + card.color.ToString() + card.number.ToString(); // Names the object in the editor
 
         display.SetCardData(card); // Set the cardData to be a random card
+        return newCard;
     }
 }
