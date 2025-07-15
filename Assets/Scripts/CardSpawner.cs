@@ -37,6 +37,6 @@ public class CardSpawner : MonoBehaviour
         newCard.name = card.type.ToString() + card.color.ToString() + card.number.ToString(); // Names the object in the editor
 
         display.SetCardData(card); // Set the cardData to be a random card
-        return newCard;
+        return newCard; // Return newly created card
     }
 }
