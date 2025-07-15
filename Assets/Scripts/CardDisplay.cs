@@ -24,6 +24,11 @@ public class CardDisplay : MonoBehaviour
 
     void ApplyCardData()
     {
+        if (cardData == null)
+        {
+            return;
+        }
+
         // Get renderer component for easy modifications
         Renderer rend = GetComponent<Renderer>();
 
