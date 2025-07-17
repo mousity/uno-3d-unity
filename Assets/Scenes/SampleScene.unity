@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &56999444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4312218765886185706, guid: 9dc602d806b7c824e965aa9c8f691f91, type: 3}
+  m_PrefabInstance: {fileID: 1449387469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &168033311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8505199358900813128, guid: 9dc602d806b7c824e965aa9c8f691f91, type: 3}
@@ -1152,7 +1157,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfadac4b75dcbad4e864ae9bc1a3aa0e, type: 2}
   - {fileID: 11400000, guid: 758a4cf969762ee43bf47cec502243b7, type: 2}
   - {fileID: 11400000, guid: 1a2183b55b089e04bae058391307a0d9, type: 2}
-  topCard: {fileID: 0}
+  topCard: {fileID: 56999444}
 --- !u!4 &1177797808
 Transform:
   m_ObjectHideFlags: 0
@@ -1268,7 +1273,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4312218765886185706, guid: 9dc602d806b7c824e965aa9c8f691f91, type: 3}
       propertyPath: m_Name
-      value: Card (4)
+      value: TopCard
       objectReference: {fileID: 0}
     - target: {fileID: 8505199358900813128, guid: 9dc602d806b7c824e965aa9c8f691f91, type: 3}
       propertyPath: m_LocalScale.y
