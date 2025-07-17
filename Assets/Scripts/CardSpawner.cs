@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class CardSpawner : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CardSpawner : MonoBehaviour
     public GameObject cardPrefab;
     // Deck filled with all possible cards one could pull
     public List<CardData> deck;
+    public GameObject topCard;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,16 +25,16 @@ public class CardSpawner : MonoBehaviour
     }
 
 
-    public GameObject DrawRandomCard()
+    public GameObject DrawRandomCard(GameState currentState)
     {
         // Generate random index to pick out a card in the list
         int index = Random.Range(0, deck.Count);
-        Vector3 pos = new Vector3(2, 2, 1); // Test positional vector
+        //Vector3 pos = new Vector3(2, 2, 1); // Test positional vector
 
         CardData card = deck[index]; // Grab random card
 
         // Instantiate card prefab with position and no rotation
-        GameObject newCard = Instantiate(cardPrefab, pos, Quaternion.identity);
+        GameObject newCard = Instantiate(cardPrefab, topCard.transform.position, topCard.transform.rotation);
         CardDisplay display = newCard.GetComponent<CardDisplay>(); // Get the display component of the new card we instantiated
         newCard.name = card.type.ToString() + card.color.ToString() + card.number.ToString(); // Names the object in the editor
 
