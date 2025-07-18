@@ -25,10 +25,10 @@ public class ArcCards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int cardCount = transform.childCount;
-        if (cardCount != lastCardCount)
+        int cardCount = transform.childCount; // Get children count
+        if (cardCount != lastCardCount) // If the card amount changed
         {
-            SpaceCards();
+            SpaceCards(); // Then we call spacecards()
             lastCardCount = cardCount;
         }
     }
