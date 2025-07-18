@@ -11,10 +11,11 @@ public class ArcCards : MonoBehaviour
     public float zOffset; // z offset to let cards position behind one another
     private Vector3 originalLAnchorPos; // Original position of the left anchor
     private Vector3 originalRAnchorPos; // Original position of the right anchor
+    private int lastCardCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        lastCardCount = -1;
         zOffset = 0.01f; // Set z offset
         anchorOffset = 0.15f; // Set anchor offset
         originalLAnchorPos = leftAnchor.position; // Set original left and right anchor positions
@@ -24,7 +25,12 @@ public class ArcCards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpaceCards(); // Space cards dynamically
+        int cardCount = transform.childCount;
+        if (cardCount != lastCardCount)
+        {
+            SpaceCards();
+            lastCardCount = cardCount;
+        }
     }
 
     void SpaceCards()
