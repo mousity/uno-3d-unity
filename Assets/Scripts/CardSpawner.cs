@@ -10,6 +10,7 @@ public class CardSpawner : MonoBehaviour
     // Deck filled with all possible cards one could pull
     public List<CardData> deck;
     public GameObject topCard;
+    public Transform playerHand;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,12 +30,17 @@ public class CardSpawner : MonoBehaviour
     {
         // Generate random index to pick out a card in the list
         int index = Random.Range(0, deck.Count);
+        GameObject newCard;
         //Vector3 pos = new Vector3(2, 2, 1); // Test positional vector
 
         CardData card = deck[index]; // Grab random card
-
+        newCard = Instantiate(cardPrefab, topCard.transform.position, topCard.transform.rotation);
         // Instantiate card prefab with position and no rotation
-        GameObject newCard = Instantiate(cardPrefab, topCard.transform.position, topCard.transform.rotation);
+        if (currentState == GameState.PlayerTurn)
+        {
+            newCard = Instantiate(cardPrefab, topCard.transform.position, topCard.transform.rotation, playerHand);
+        }
+        
         CardDisplay display = newCard.GetComponent<CardDisplay>(); // Get the display component of the new card we instantiated
         newCard.name = card.type.ToString() + card.color.ToString() + card.number.ToString(); // Names the object in the editor
 
