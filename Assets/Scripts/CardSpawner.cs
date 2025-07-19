@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
@@ -12,6 +13,7 @@ public class CardSpawner : MonoBehaviour
     public List<CardData> deck;
     public GameObject topCard;
     public Transform playerHand;
+    public Transform enemyHand;
 
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
@@ -45,14 +47,20 @@ public class CardSpawner : MonoBehaviour
         // Generate random index to pick out a card in the list
         int index = Random.Range(0, deck.Count);
         GameObject newCard;
+        Quaternion cardRotation = new Quaternion(0, 0, 0, 0);
+        if (currentState == GameState.EnemyTurn) cardRotation.y = 180;
         //Vector3 pos = new Vector3(2, 2, 1); // Test positional vector
 
         CardData card = deck[index]; // Grab random card
         newCard = Instantiate(cardPrefab, topCard.transform.position, new Quaternion(0,0,0,0));
-        // Instantiate card prefab with position and no rotation
+        // Instantiate card prefab with position and upright rotation
         if (currentState == GameState.PlayerTurn)
         {
             newCard.transform.SetParent(playerHand, worldPositionStays: false);
+        }
+        else if (currentState == GameState.EnemyTurn)
+        {
+            newCard.transform.SetParent(enemyHand, worldPositionStays: false);
         }
 
         CardDisplay display = newCard.GetComponent<CardDisplay>(); // Get the display component of the new card we instantiated

@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
         currentState = GameState.PlayerTurn; // Set the current state to the start of the game
                                              //spawner.DrawRandomCard(currentState);
         StartCoroutine(spawner.DrawMultipleCards(currentState)); // Testing drawing multiple cards
+
+        currentState = GameState.EnemyTurn;
+        StartCoroutine(spawner.DrawMultipleCards(currentState));
         spawner.DrawRandomCard(currentState);
     }
 

@@ -1122,6 +1122,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1a2183b55b089e04bae058391307a0d9, type: 2}
   topCard: {fileID: 56999444}
   playerHand: {fileID: 348040912}
+  enemyHand: {fileID: 1820141757}
 --- !u!4 &1177797808
 Transform:
   m_ObjectHideFlags: 0
