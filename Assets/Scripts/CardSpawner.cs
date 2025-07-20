@@ -52,7 +52,7 @@ public class CardSpawner : MonoBehaviour
         //Vector3 pos = new Vector3(2, 2, 1); // Test positional vector
 
         CardData card = deck[index]; // Grab random card
-        newCard = Instantiate(cardPrefab, topCard.transform.position, new Quaternion(0,0,0,0));
+        newCard = Instantiate(cardPrefab, topCard.transform.position, cardRotation);
         // Instantiate card prefab with position and upright rotation
         if (currentState == GameState.PlayerTurn)
         {
