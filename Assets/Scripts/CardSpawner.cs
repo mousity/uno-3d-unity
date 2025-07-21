@@ -56,11 +56,11 @@ public class CardSpawner : MonoBehaviour
         // Instantiate card prefab with position and upright rotation
         if (currentState == GameState.PlayerTurn)
         {
-            newCard.transform.SetParent(playerHand, worldPositionStays: false);
+            newCard.transform.SetParent(playerHand, worldPositionStays: false); // Sets parent to playerHand
         }
         else if (currentState == GameState.EnemyTurn)
         {
-            newCard.transform.SetParent(enemyHand, worldPositionStays: false);
+            newCard.transform.SetParent(enemyHand, worldPositionStays: false); // Sets parents to enemyHand
         }
 
         CardDisplay display = newCard.GetComponent<CardDisplay>(); // Get the display component of the new card we instantiated
