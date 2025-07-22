@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class CardSpawner : MonoBehaviour
 {
-
     // GameObject to hold the card we will spawn
     public GameObject cardPrefab;
     // Deck filled with all possible cards one could pull
@@ -14,7 +13,6 @@ public class CardSpawner : MonoBehaviour
     public GameObject topCard;
     public Transform playerHand;
     public Transform enemyHand;
-
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
 
@@ -24,13 +22,6 @@ public class CardSpawner : MonoBehaviour
         // Function to draw random card once for testing
         // DrawRandomCard();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public IEnumerator DrawMultipleCards(GameState currentState) 
     {
