@@ -19,13 +19,9 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentState = GameState.PlayerTurn; // Set the current state to the start of the game
+        currentState = GameState.StartGame; // Set the current state to the start of the game
                                              //spawner.DrawRandomCard(currentState);
         StartCoroutine(spawner.DrawMultipleCards(currentState)); // Testing drawing multiple cards
-
-        currentState = GameState.EnemyTurn;
-        StartCoroutine(spawner.DrawMultipleCards(currentState));
-        spawner.DrawRandomCard(currentState);
     }
 
 }

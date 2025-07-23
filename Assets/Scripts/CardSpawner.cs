@@ -15,6 +15,7 @@ public class CardSpawner : MonoBehaviour
     public Transform enemyHand;
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
+    private float drawDelayStart = 0.25f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,12 +26,19 @@ public class CardSpawner : MonoBehaviour
 
     public IEnumerator DrawMultipleCards(GameState currentState) 
     {
-        for (int i = 0; i < cardsToDraw; i++) // For amount of cards to be drawn
+        if (currentState == GameState.StartGame)
         {
-            DrawRandomCard(currentState);
-            yield return new WaitForSeconds(drawDelay);
-            Debug.Log("check");
+            for (int i = 0; i < cardsToDraw; i++) // For amount of cards to be drawn
+            {
+                DrawRandomCard(GameState.PlayerTurn);
+                yield return new WaitForSeconds(drawDelayStart);
+                DrawRandomCard(GameState.EnemyTurn);
+                yield return new WaitForSeconds(drawDelayStart);
+                Debug.Log("check");
+            }
+
         }
+        
     }
 
     public GameObject DrawRandomCard(GameState currentState)
