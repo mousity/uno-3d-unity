@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.XR.Haptics;
 
 public class CardSpawner : MonoBehaviour
 {
@@ -14,9 +15,14 @@ public class CardSpawner : MonoBehaviour
     public GameObject topCard;
     public Transform playerHand;
     public Transform enemyHand;
+    private ArcCards arcer;
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
     private float drawDelayStart = 0.25f;
+
+    public Transform enemyPoint;
+    public Transform playerPoint;
+    public bool animating = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,8 +53,7 @@ public class CardSpawner : MonoBehaviour
         // Generate random index to pick out a card in the list
         int index = Random.Range(0, deck.Count);
         GameObject newCard;
-        Quaternion cardRotation = new Quaternion(0, 0, 0, 0);
-        if (currentState == GameState.EnemyTurn) cardRotation.y = 180;
+        Quaternion cardRotation = new Quaternion(-90, 0, 0, 0);
         //Vector3 pos = new Vector3(2, 2, 1); // Test positional vector
 
         CardData card = deck[index]; // Grab random card
@@ -69,8 +74,26 @@ public class CardSpawner : MonoBehaviour
         newCard.name = card.type.ToString() + card.color.ToString() + card.number.ToString(); // Names the object in the editor
 
         display.SetCardData(card); // Set the cardData to be a random card
+        StartCoroutine(Animate(newCard, currentState));
         return newCard; // Return newly created card
     }
 
-    
+
+    IEnumerator Animate(GameObject card, GameState state)
+    {
+        animating = true;
+        Vector3 tempPos = card.transform.position;
+        float t = 0;
+        Transform point = state == GameState.PlayerTurn ? playerPoint : enemyPoint;
+        Quaternion rotation = state == GameState.EnemyTurn ? new Quaternion(0, 180, 0, 0) : new Quaternion(0, 0, 0, 0);
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            card.transform.position = Vector3.Lerp(tempPos, point.position, t);
+            card.transform.rotation = Quaternion.Slerp(new Quaternion(-90, 0, 0, 0), rotation, t);
+            yield return null;  // Wait one frame
+        }
+        animating = false;
+    }
+
 }
