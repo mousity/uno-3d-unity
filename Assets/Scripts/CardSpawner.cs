@@ -72,15 +72,5 @@ public class CardSpawner : MonoBehaviour
         return newCard; // Return newly created card
     }
 
-    public IEnumerator WaitForAnimation(GameObject card)
-    {
-        float t = 0;
-        Transform tempPos = card.transform;
-        while (t < 1f)
-        {
-            t += Time.deltaTime;
-            card.transform.position = Vector3.Lerp(tempPos.position, playerHand.position, t);
-            yield return new WaitForSeconds(0.05f);  // Wait one frame
-        }
-    }
+    
 }
