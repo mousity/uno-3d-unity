@@ -85,12 +85,12 @@ public class CardSpawner : MonoBehaviour
         Vector3 tempPos = card.transform.position;
         float t = 0;
         Transform point = state == GameState.PlayerTurn ? playerPoint : enemyPoint;
-        Quaternion rotation = state == GameState.EnemyTurn ? new Quaternion(0, 180, 0, 0) : new Quaternion(0, 0, 0, 0);
+        Quaternion rotation = state == GameState.EnemyTurn ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.Euler(0f, 0f, 0f);
         while (t < 1f)
         {
             t += Time.deltaTime;
             card.transform.position = Vector3.Lerp(tempPos, point.position, t);
-            card.transform.rotation = Quaternion.Slerp(new Quaternion(-90, 0, 0, 0), rotation, t);
+            card.transform.rotation = Quaternion.Slerp(Quaternion.Euler(-90f, 0f, 0f), rotation, t);
             yield return null;  // Wait one frame
         }
         animating = false;
