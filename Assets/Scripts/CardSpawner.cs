@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
@@ -24,7 +25,7 @@ public class CardSpawner : MonoBehaviour
         // DrawRandomCard();
     }
 
-    public IEnumerator DrawMultipleCards(GameState currentState) 
+    public IEnumerator DrawMultipleCards(GameState currentState)
     {
         if (currentState == GameState.StartGame)
         {
@@ -38,7 +39,7 @@ public class CardSpawner : MonoBehaviour
             }
 
         }
-        
+
     }
 
     public GameObject DrawRandomCard(GameState currentState)
@@ -52,6 +53,8 @@ public class CardSpawner : MonoBehaviour
 
         CardData card = deck[index]; // Grab random card
         newCard = Instantiate(cardPrefab, topCard.transform.position, cardRotation);
+
+
         // Instantiate card prefab with position and upright rotation
         if (currentState == GameState.PlayerTurn)
         {
@@ -67,5 +70,17 @@ public class CardSpawner : MonoBehaviour
 
         display.SetCardData(card); // Set the cardData to be a random card
         return newCard; // Return newly created card
+    }
+
+    public IEnumerator WaitForAnimation(GameObject card)
+    {
+        float t = 0;
+        Transform tempPos = card.transform;
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+            card.transform.position = Vector3.Lerp(tempPos.position, playerHand.position, t);
+            yield return new WaitForSeconds(0.05f);  // Wait one frame
+        }
     }
 }
