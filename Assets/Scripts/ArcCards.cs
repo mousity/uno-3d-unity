@@ -15,7 +15,6 @@ public class ArcCards : MonoBehaviour
     private Vector3 originalLAnchorPos; // Original position of the left anchor
     private Vector3 originalRAnchorPos; // Original position of the right anchor
     private int lastCardCount;
-    private bool layoutPending = false;
     public CardSpawner spawner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,26 +37,6 @@ public class ArcCards : MonoBehaviour
         }
     }
 
-    // void Update()
-    // {
-    //     int cardCount = transform.childCount; // Get children count
-    //     if (!layoutPending)
-    //     {
-    //         if (cardCount != lastCardCount) // If the card amount changed
-    //         {
-    //             layoutPending = true;
-    //             StartCoroutine(DelaySetting());
-    //             lastCardCount = cardCount;
-    //         }
-    //     }
-    // }
-
-    // IEnumerator DelaySetting()
-    // {
-    //     yield return new WaitForSeconds(f);
-    //     SpaceCards();
-    //     layoutPending = false;
-    // }
 
     void SpaceCards()
     {
