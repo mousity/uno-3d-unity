@@ -19,7 +19,6 @@ public class CardSpawner : MonoBehaviour
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
     private float drawDelayStart = 0.25f;
-
     public Transform enemyPoint;
     public Transform playerPoint;
     public bool animating = false;
@@ -27,8 +26,6 @@ public class CardSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Function to draw random card once for testing
-        // DrawRandomCard();
     }
 
     public IEnumerator DrawMultipleCards(GameState currentState)
