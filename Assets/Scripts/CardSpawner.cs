@@ -26,6 +26,7 @@ public class CardSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
     }
 
     public IEnumerator DrawMultipleCards(GameState currentState)
@@ -40,9 +41,7 @@ public class CardSpawner : MonoBehaviour
                 yield return new WaitForSeconds(drawDelayStart);
                 Debug.Log("check");
             }
-
         }
-
     }
 
     public GameObject DrawRandomCard(GameState currentState)
@@ -51,11 +50,9 @@ public class CardSpawner : MonoBehaviour
         int index = Random.Range(0, deck.Count);
         GameObject newCard;
         Quaternion cardRotation = new Quaternion(-90, 0, 0, 0);
-        //Vector3 pos = new Vector3(2, 2, 1); // Test positional vector
 
         CardData card = deck[index]; // Grab random card
         newCard = Instantiate(cardPrefab, topCard.transform.position, cardRotation);
-
 
         // Instantiate card prefab with position and upright rotation
         if (currentState == GameState.PlayerTurn)

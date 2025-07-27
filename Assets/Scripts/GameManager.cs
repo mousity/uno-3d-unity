@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
         currentState = GameState.StartGame; // Set the current state to the start of the game
         enemyTextScript = enemyTextScript.GetComponent<EnemyText>();
         StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
-
         StartCoroutine(spawner.DrawMultipleCards(currentState)); // Testing drawing multiple cards at the start
         currentState = GameState.PlayerTurn;
     }

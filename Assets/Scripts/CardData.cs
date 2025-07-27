@@ -10,10 +10,7 @@ using UnityEngine;
 
 public class CardData : ScriptableObject
 {
-
-    // Data that all cards will have
-
-    // Sotres color of the card
+    // Stores color of the card
     public CardColor color;
 
     // Stores type of card

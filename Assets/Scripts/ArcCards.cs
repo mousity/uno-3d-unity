@@ -4,10 +4,9 @@ using System.Runtime.CompilerServices;
 using NUnit.Framework.Internal;
 using UnityEngine;
 
-
 public class ArcCards : MonoBehaviour
 {
-    public float handWidth;
+    public float handWidth; // Width of the hand in question
     public Transform leftAnchor; // Left hand anchor
     public Transform rightAnchor; // Right hand anchor 0.55
     public float anchorOffset; // Anchor offset when the hand grows or shrinks
@@ -54,7 +53,7 @@ public class ArcCards : MonoBehaviour
             pos = new Vector3(pos.x, leftAnchor.position.y, leftAnchor.position.z); // Ensure the Y and Z axis are the same for all cards
             pos.z += zOffset; // Modify the z position to be behind the previous card
             zOffset += 0.01f; // Increase z offset for the next card
-            transform.GetChild(i).localPosition = pos; // Locally position the card within the playerhand object
+            card.localPosition = pos; // Locally position the card within the playerhand object
         }
 
         zOffset = 0.01f; // Reset z offset so cards are not eternally going behind one another

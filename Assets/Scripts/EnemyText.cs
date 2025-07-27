@@ -11,7 +11,6 @@ public class EnemyText : MonoBehaviour
     private float duration = 0.5f;
     private TextMeshProUGUI messageText;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,12 +18,6 @@ public class EnemyText : MonoBehaviour
         transform.localScale = Vector3.zero; // Set the current scale to 0
         gameObject.SetActive(true);
         messageText = GetComponentInChildren<TextMeshProUGUI>(); // Get our textmesh child (assuming we only have the one)
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     // Coroutine to scale the bubble up slowly
