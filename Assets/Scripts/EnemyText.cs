@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.DualShock.LowLevel;
 
 public class EnemyText : MonoBehaviour
 {
+    public EnemyLines lines;
     private Vector3 bubbleSize;
     private float duration = 0.5f;
 
@@ -36,6 +37,21 @@ public class EnemyText : MonoBehaviour
                 t += Time.deltaTime;
                 yield return null;
             }
+
+            StartCoroutine(TypeText());
+        }
+    }
+
+    public IEnumerator TypeText()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, lines.lines.Length);
+        float t = 0f;
+        string line = lines.lines[randomIndex];
+        string slowLine = "";
+        foreach (char letter in line)
+        {
+            slowLine += letter;
+            yield return new WaitForSeconds(0.03f);
         }
     }
 }
