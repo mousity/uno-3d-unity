@@ -18,10 +18,11 @@ public class CardSpawner : MonoBehaviour
     private ArcCards arcer;
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
-    private float drawDelayStart = 0.25f;
+    private float drawDelayStart = 0.4f;
     public Transform enemyPoint;
     public Transform playerPoint;
     public bool animating = false;
+    public bool drawing = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,6 +47,7 @@ public class CardSpawner : MonoBehaviour
 
     public GameObject DrawRandomCard(GameState currentState)
     {
+        drawing = true;
         // Generate random index to pick out a card in the list
         int index = Random.Range(0, deck.Count);
         GameObject newCard;
@@ -80,7 +82,7 @@ public class CardSpawner : MonoBehaviour
         float t = 0;
         Transform point = state == GameState.PlayerTurn ? playerPoint : enemyPoint;
         Quaternion rotation = state == GameState.EnemyTurn ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.Euler(0f, 0f, 0f);
-        while (t < 1f)
+        while (card.transform.position != point.position && card.transform.rotation != rotation)
         {
             t += Time.deltaTime;
             card.transform.position = Vector3.Lerp(tempPos, point.position, t);
@@ -88,6 +90,7 @@ public class CardSpawner : MonoBehaviour
             yield return null;  // Wait one frame
         }
         animating = false;
+        drawing = false;
     }
 
 }

@@ -46,7 +46,7 @@ public class EnemyText : MonoBehaviour
         string slowLine = ""; // String to hold the temporary line
         foreach (char letter in line) // For each letter in our line
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0)) // If the user clicks, fast forward the message
             {
                 messageText.SetText(line);
                 break;

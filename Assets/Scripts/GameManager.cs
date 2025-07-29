@@ -25,7 +25,11 @@ public class GameManager : MonoBehaviour
         enemyTextScript = enemyTextScript.GetComponent<EnemyText>();
         StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
         StartCoroutine(spawner.DrawMultipleCards(currentState)); // Testing drawing multiple cards at the start
-        currentState = GameState.PlayerTurn;
+
+        while ((currentState != GameState.Win) && (currentState != GameState.Lose)) // While the game is still going
+        {
+            break;
+        }
     }
 
 }

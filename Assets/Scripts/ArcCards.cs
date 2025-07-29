@@ -30,7 +30,8 @@ public class ArcCards : MonoBehaviour
     void Update()
     {
         int cardCount = transform.childCount;
-        if (!spawner.animating && (cardCount != lastCardCount))
+        // && (cardCount != lastCardCount)
+        if (!spawner.animating && !spawner.drawing)
         {
             SpaceCards();
         }
