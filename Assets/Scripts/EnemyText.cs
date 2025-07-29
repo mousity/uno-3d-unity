@@ -46,6 +46,11 @@ public class EnemyText : MonoBehaviour
         string slowLine = ""; // String to hold the temporary line
         foreach (char letter in line) // For each letter in our line
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                messageText.SetText(line);
+                break;
+            }
             slowLine += letter; // Add to the string
             messageText.SetText(slowLine); // Set the text
             yield return new WaitForSeconds(0.03f); // Wait a bit before doing the next letter
