@@ -33,7 +33,7 @@ public class EnemyText : MonoBehaviour
                 t += Time.deltaTime;
                 yield return null;
             }
-
+            yield return new WaitForSeconds(0.2f);
             StartCoroutine(TypeText()); // Start the coroutine to type the text into the textmesh
         }
     }
