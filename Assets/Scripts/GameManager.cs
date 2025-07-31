@@ -44,7 +44,10 @@ public class GameManager : MonoBehaviour
             }
             else if (currentState == GameState.EnemyTurn)
             {
+                turnFinished = false;
+                StartCoroutine(EnemyTurn());
                 yield return new WaitUntil(() => turnFinished);
+                currentState = GameState.PlayerTurn;
             }
         }
 
@@ -61,12 +64,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayerTurn()
     {
-
+        yield return new WaitForSeconds(0.1f);
     }
 
     IEnumerator EnemyTurn()
     {
-        
+        yield return new WaitForSeconds(0.1f);
     }
 
 }
