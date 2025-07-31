@@ -17,24 +17,56 @@ public class GameManager : MonoBehaviour
     public GameState currentState; // Reflects the current state of the game
     public GameObject textBox;
     public EnemyText enemyTextScript;
+    public bool turnFinished;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         textBox.SetActive(false);
+        turnFinished = true;
+
         currentState = GameState.StartGame; // Set the current state to the start of the game
         enemyTextScript = enemyTextScript.GetComponent<EnemyText>();
-        StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
-        StartCoroutine(spawner.DrawMultipleCards(currentState)); // Testing drawing multiple cards at the start
 
+        StartCoroutine(StartGame());
+    }
+
+    public IEnumerator GameLoop()
+    {
         while ((currentState != GameState.Win) && (currentState != GameState.Lose)) // While the game is still going
         {
             if (currentState == GameState.PlayerTurn)
             {
-                
+                turnFinished = false;
+                StartCoroutine(PlayerTurn());
+                yield return new WaitUntil(() => turnFinished);
+                currentState = GameState.EnemyTurn;
             }
-            break;
+            else if (currentState == GameState.EnemyTurn)
+            {
+                yield return new WaitUntil(() => turnFinished);
+            }
         }
+
+    }
+
+    IEnumerator StartGame()
+    {
+        StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(spawner.DrawMultipleCards(currentState));
+    }
+
+    IEnumerator PlayerTurn()
+    {
+
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        
     }
 
 }
