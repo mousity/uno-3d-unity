@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
 
         while ((currentState != GameState.Win) && (currentState != GameState.Lose)) // While the game is still going
         {
+            if (currentState == GameState.PlayerTurn)
+            {
+                
+            }
             break;
         }
     }
