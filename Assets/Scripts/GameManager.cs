@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -26,11 +27,25 @@ public class GameManager : MonoBehaviour
     {
         textBox.SetActive(false);
         turnFinished = true;
+        
 
         currentState = GameState.StartGame; // Set the current state to the start of the game
         enemyTextScript = enemyTextScript.GetComponent<EnemyText>();
 
         StartCoroutine(StartGame());
+    }
+
+    void Update()
+    {
+        Vector3 mousePos = Input.mousePosition; // 3D vector to point to current position of mouse
+        rayObj = Camera.main.ScreenPointToRay(mousePos);
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(rayObj, out rayHit, 20f))
+            {
+                Debug.Log(rayHit.transform.gameObject.name);
+            }
+        }
     }
 
     public IEnumerator GameLoop()
