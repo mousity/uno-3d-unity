@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject textBox;
     public EnemyText enemyTextScript;
     public bool turnFinished;
+    private Ray rayObj;
+    private RaycastHit rayHit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
