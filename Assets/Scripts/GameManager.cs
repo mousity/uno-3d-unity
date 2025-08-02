@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
             if (Physics.Raycast(rayObj, out rayHit, 20f))
             {
                 Debug.Log(rayHit.transform.gameObject.name);
+                rayHit.transform.localScale = rayHit.transform.localScale + new Vector3(1, 1, 1);
             }
         }
     }
