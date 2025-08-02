@@ -20,11 +20,11 @@ public class DetectHover : MonoBehaviour
         // Physics.Raycast(ray, out Raycast, maxDistance)
         if (Physics.Raycast(ray, out RaycastHit rayHit, 20f))
         {
-            GameObject currentObject = rayHit.collider.gameObject;
+            GameObject currentObject = rayHit.collider.gameObject; // Get the current hovered gameObject
 
             if (currentObject != lastHovered) // If our current object is not the last hovered object
             {
-                if (lastHovered != null)
+                if (lastHovered != null) // If our lastHovered is null
                 {
                     lastHovered.GetComponent<ScaleHover>()?.OnHoverExit(); // Call the OnHoverExit for our old object
                 }
@@ -32,15 +32,15 @@ public class DetectHover : MonoBehaviour
             }
 
             currentObject.GetComponent<ScaleHover>()?.OnHoverEnter(); // Call the OnHoverExit for our current object
-            lastHovered = currentObject;
+            lastHovered = currentObject; // Set lastHovered to our current object
 
         }
         else
         {
-            if (lastHovered != null)
+            if (lastHovered != null) // If our lasthovered is not null and our ray didn't hit anything
             {
-                lastHovered.GetComponent<ScaleHover>()?.OnHoverEnter();
-                lastHovered = null;
+                lastHovered.GetComponent<ScaleHover>()?.OnHoverExit(); // Make sure to exit the lastHovered
+                lastHovered = null; // Set our last hovered to null
             }
         }
 
