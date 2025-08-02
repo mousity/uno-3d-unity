@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
                 Transform parent = hitObject.transform.parent;
                 Debug.Log(parent.name);
 
-                if (parent.name == "Deck")
+                if (parent.CompareTag("Deck"))
                 {
                     Debug.Log(currentState);
                     spawner.DrawRandomCard(currentState);
