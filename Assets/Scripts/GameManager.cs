@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         turnFinished = true;
         currentState = GameState.StartGame; // Set the current state to the start of the game
         enemyTextScript = enemyTextScript.GetComponent<EnemyText>();
-
         StartCoroutine(StartGame());
     }
 
@@ -39,9 +38,17 @@ public class GameManager : MonoBehaviour
         rayObj = Camera.main.ScreenPointToRay(mousePos);
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(rayObj, out rayHit, 20f))
+            if (Physics.Raycast(rayObj, out rayHit, 20f) && currentState != GameState.StartGame)
             {
-                Debug.Log(rayHit.transform.gameObject.name);
+                GameObject hitObject = rayHit.collider.gameObject;
+                Transform parent = hitObject.transform.parent;
+                Debug.Log(parent.name);
+
+                if (parent.name == "Deck")
+                {
+                    Debug.Log(currentState);
+                    spawner.DrawRandomCard(currentState);
+                }
             }
         }
     }
@@ -73,6 +80,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
         yield return new WaitForSeconds(1f);
         StartCoroutine(spawner.DrawMultipleCards(currentState));
+        currentState = GameState.PlayerTurn;
     }
 
     IEnumerator PlayerTurn()
