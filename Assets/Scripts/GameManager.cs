@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     {
         textBox.SetActive(false);
         turnFinished = true;
-        
-
         currentState = GameState.StartGame; // Set the current state to the start of the game
         enemyTextScript = enemyTextScript.GetComponent<EnemyText>();
 
@@ -73,9 +71,7 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGame()
     {
         StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
-
         yield return new WaitForSeconds(1f);
-
         StartCoroutine(spawner.DrawMultipleCards(currentState));
     }
 

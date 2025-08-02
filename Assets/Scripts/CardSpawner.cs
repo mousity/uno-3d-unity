@@ -18,7 +18,7 @@ public class CardSpawner : MonoBehaviour
     private ArcCards arcer;
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
-    private float drawDelayStart = 0.4f;
+    private float drawDelayStart = 0.2f;
     public Transform enemyPoint;
     public Transform playerPoint;
     public bool animating = false;
