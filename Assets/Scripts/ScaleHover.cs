@@ -13,7 +13,7 @@ public class ScaleHover : MonoBehaviour
     {
         isHovered = false;
         originalScale = transform.localScale;
-        newScale = new Vector3(0.1f, 0.1f, 0.1f);
+        newScale = new Vector3(0.1f, 0.1f, 0f);
         newScale += originalScale;
     }
 
