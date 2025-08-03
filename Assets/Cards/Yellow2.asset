@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14620168f9c5de4181a78b1abfaea86, type: 3}
   m_Name: Yellow2
   m_EditorClassIdentifier: 
-  color: 0
+  color: 2
   type: 0
-  number: 0
+  number: 2
