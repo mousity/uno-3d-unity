@@ -56,14 +56,14 @@ public class GameManager : MonoBehaviour
     {
         while ((currentState != GameState.Win) && (currentState != GameState.Lose)) // While the game is still going
         {
-            if (currentState == GameState.PlayerTurn)
+            if (currentState == GameState.PlayerTurn) // If it's the player's turn
             {
                 turnFinished = false;
                 StartCoroutine(PlayerTurn());
                 yield return new WaitUntil(() => turnFinished);
                 currentState = GameState.EnemyTurn;
             }
-            else if (currentState == GameState.EnemyTurn)
+            else if (currentState == GameState.EnemyTurn) // If it's the enemy's turn
             {
                 turnFinished = false;
                 StartCoroutine(EnemyTurn());
