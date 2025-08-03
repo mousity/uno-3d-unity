@@ -78,7 +78,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
         yield return new WaitForSeconds(1f);
-        StartCoroutine(spawner.DrawMultipleCards(currentState));
+        yield return StartCoroutine(spawner.DrawMultipleCards(currentState));
+        textBox.SetActive(false);
         currentState = GameState.PlayerTurn;
     }
 
