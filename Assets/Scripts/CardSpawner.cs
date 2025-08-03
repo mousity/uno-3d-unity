@@ -45,7 +45,7 @@ public class CardSpawner : MonoBehaviour
         }
     }
 
-    public GameObject DrawRandomCard(GameState currentState)
+    public void DrawRandomCard(GameState currentState)
     {
         drawing = true;
         // Generate random index to pick out a card in the list
@@ -71,7 +71,6 @@ public class CardSpawner : MonoBehaviour
 
         display.SetCardData(card); // Set the cardData to be a random card
         StartCoroutine(Animate(newCard, currentState));
-        return newCard; // Return newly created card
     }
 
 
@@ -91,6 +90,10 @@ public class CardSpawner : MonoBehaviour
         }
         animating = false;
         drawing = false;
+
+        Transform hand = state == GameState.PlayerTurn ? playerHand : enemyHand;
+        arcer = hand.GetComponent<ArcCards>();
+        arcer.SpaceCards();
     }
 
 }
