@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
             {
                 GameObject hitObject = rayHit.collider.gameObject;
                 Transform parent = hitObject.transform.parent;
-                Debug.Log(parent.name);
 
                 if (parent.CompareTag("Deck"))
                 {
