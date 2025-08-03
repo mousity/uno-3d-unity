@@ -36,17 +36,17 @@ public class GameManager : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition; // 3D vector to point to current position of mouse
         rayObj = Camera.main.ScreenPointToRay(mousePos);
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) // If we click
         {
-            if (Physics.Raycast(rayObj, out rayHit, 20f) && currentState != GameState.StartGame)
+            if (Physics.Raycast(rayObj, out rayHit, 20f) && currentState != GameState.StartGame) // And if the raycast hit a valid object
             {
                 GameObject hitObject = rayHit.collider.gameObject;
                 Transform parent = hitObject.transform.parent;
 
-                if (parent.CompareTag("Deck"))
+                if (parent.CompareTag("Deck")) // If the hit object is the deck
                 {
                     Debug.Log(currentState);
-                    spawner.DrawRandomCard(currentState);
+                    spawner.DrawRandomCard(currentState); // Draw a card
                 }
             }
         }
@@ -76,10 +76,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState));
+        StartCoroutine(enemyTextScript.ScaleBubbleUp(currentState)); // Start the enemy's dialogue
         yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(spawner.DrawMultipleCards(currentState));
-        textBox.SetActive(false);
+        yield return StartCoroutine(spawner.DrawMultipleCards(currentState)); // Start drawing all cards
+        textBox.SetActive(false); // Turn off the textBox
         currentState = GameState.PlayerTurn;
     }
 

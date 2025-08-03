@@ -31,7 +31,7 @@ public class ArcCards : MonoBehaviour
     {
         int cardCount = transform.childCount;
         // && (cardCount != lastCardCount)
-        if (!spawner.animating && !spawner.drawing)
+        if (!spawner.animating)
         {
             SpaceCards();
         }
