@@ -26,18 +26,6 @@ public class ArcCards : MonoBehaviour
         originalRAnchorPos = rightAnchor.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // int cardCount = transform.childCount;
-        // // && (cardCount != lastCardCount)
-        // if (!spawner.animating)
-        // {
-        //     SpaceCards();
-        // }
-    }
-
-
     public void SpaceCards()
     {
         int cardCount = transform.childCount; // Get the amount of children in the player's hand (cards)
