@@ -46,6 +46,5 @@ public class PlayAreaManager : MonoBehaviour
     public void SetMostRecentCard(GameObject card)
     {
         mostRecentCard = card;
-        cardPile.Enqueue(mostRecentCard);
     }
 }

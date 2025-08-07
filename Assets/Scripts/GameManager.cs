@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour
                 }
                 else if (parent.CompareTag("PlayerHand"))
                 {
-                    CardData recentCard = playArea.GetMostRecentCard().GetComponent<CardData>();
-                    CardData hoveredCard = hitObject.GetComponent<CardData>();
+                    CardData recentCard = playArea.GetMostRecentCard().GetComponent<CardDisplay>().cardData;
+                    CardData hoveredCard = hitObject.GetComponent<CardDisplay>().cardData;
                     Debug.Log("PLAYER HAND!");
                     if ((recentCard.color == hoveredCard.color) || (recentCard.number == hoveredCard.number))
                     {

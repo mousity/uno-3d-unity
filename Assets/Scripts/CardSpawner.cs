@@ -87,6 +87,7 @@ public class CardSpawner : MonoBehaviour
 
     IEnumerator Animate(GameObject card, GameState state)
     {
+        if(state == GameState.StartGame){ yield break; }
         animating = true;
         Vector3 tempPos = card.transform.position;
         float t = 0;
