@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
                     if ((recentCard.color == hoveredCard.color) || (recentCard.number == hoveredCard.number))
                     {
                         hitObject.transform.SetParent(playAreaObject);
+                        playArea.ModifyPlayArea(hitObject);
                     }
                 }
             }

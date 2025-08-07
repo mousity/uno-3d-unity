@@ -92,7 +92,7 @@ public class CardSpawner : MonoBehaviour
     {
         if (state == GameState.StartGame)
         {
-            Vector3 playPoint = new UnityEngine.Vector3(0f, 0.5f, 0f);
+            Vector3 playPoint = new Vector3(0f, 0.5f, 0f);
             card.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
             card.transform.position = playPoint;
             yield break;
