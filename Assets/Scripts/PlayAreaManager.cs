@@ -51,11 +51,14 @@ public class PlayAreaManager : MonoBehaviour
     public void SetCardPositions()
     {
         float yPos = 0.5f;
+        float randRotation = 0f;
         Vector3 baseSpot = new Vector3(0f, yPos, 0f);
         foreach (GameObject card in cardPile)
         {
+            randRotation = Random.Range(-15f, 15f);
             card.transform.position = baseSpot;
-            baseSpot.y += 0.05f;
+            card.transform.rotation = Quaternion.Euler(90f, 0f, randRotation);
+            baseSpot.y += 0.02f;
         }
     }
 }
