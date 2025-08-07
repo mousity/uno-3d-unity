@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.XR.Haptics;
+using Vector3 = UnityEngine.Vector3;
+using Quaternion = UnityEngine.Quaternion;
 
 public class CardSpawner : MonoBehaviour
 {
@@ -87,7 +90,13 @@ public class CardSpawner : MonoBehaviour
 
     IEnumerator Animate(GameObject card, GameState state)
     {
-        if(state == GameState.StartGame){ yield break; }
+        if (state == GameState.StartGame)
+        {
+            Vector3 playPoint = new UnityEngine.Vector3(0f, 0.5f, 0f);
+            card.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+            card.transform.position = playPoint;
+            yield break;
+        }
         animating = true;
         Vector3 tempPos = card.transform.position;
         float t = 0;
