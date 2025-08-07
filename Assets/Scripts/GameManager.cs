@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,10 +22,13 @@ public class GameManager : MonoBehaviour
     public bool turnFinished;
     private Ray rayObj;
     private RaycastHit rayHit;
+    public PlayAreaManager playArea;
+    public Transform playAreaObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playArea = playAreaObject.GetComponent<PlayAreaManager>();
         textBox.SetActive(false);
         turnFinished = true;
         currentState = GameState.StartGame; // Set the current state to the start of the game
@@ -47,6 +51,16 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log(currentState);
                     spawner.DrawRandomCard(currentState); // Draw a card
+                }
+                else if (parent.CompareTag("PlayerHand"))
+                {
+                    CardData recentCard = playArea.GetMostRecentCard().GetComponent<CardData>();
+                    CardData hoveredCard = hitObject.GetComponent<CardData>();
+                    Debug.Log("PLAYER HAND!");
+                    if ((recentCard.color == hoveredCard.color) || (recentCard.number == hoveredCard.number))
+                    {
+                        hitObject.transform.SetParent(playAreaObject);
+                    }
                 }
             }
         }
@@ -91,6 +105,11 @@ public class GameManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(0.1f);
+    }
+
+    public void PlayCard()
+    {
+        //if()
     }
 
 }

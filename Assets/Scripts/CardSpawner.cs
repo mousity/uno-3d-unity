@@ -15,6 +15,7 @@ public class CardSpawner : MonoBehaviour
     public GameObject topCard;
     public Transform playerHand;
     public Transform enemyHand;
+    public Transform playArea;
     private ArcCards arcer;
     private int cardsToDraw = 7;
     private float drawDelay = 0.5f;
@@ -42,6 +43,7 @@ public class CardSpawner : MonoBehaviour
                 yield return new WaitForSeconds(drawDelayStart);
                 Debug.Log("check");
             }
+            DrawRandomCard(GameState.StartGame);
         }
     }
 
@@ -65,11 +67,20 @@ public class CardSpawner : MonoBehaviour
         {
             newCard.transform.SetParent(enemyHand, worldPositionStays: false); // Sets parents to enemyHand
         }
+        
 
         CardDisplay display = newCard.GetComponent<CardDisplay>(); // Get the display component of the new card we instantiated
         newCard.name = card.type.ToString() + card.color.ToString() + card.number.ToString(); // Names the object in the editor
 
+
+
         display.SetCardData(card); // Set the cardData to be a random card
+
+        if (currentState == GameState.StartGame)
+        {
+            newCard.transform.SetParent(playArea, worldPositionStays: false);
+            playArea.GetComponent<PlayAreaManager>().SetMostRecentCard(newCard);
+        }
         StartCoroutine(Animate(newCard, currentState));
     }
 

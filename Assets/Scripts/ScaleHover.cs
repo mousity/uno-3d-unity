@@ -7,6 +7,7 @@ public class ScaleHover : MonoBehaviour
     private Vector3 originalScale;
     private Vector3 newScale;
     private bool isHovered;
+    public Transform playArea;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,5 +36,16 @@ public class ScaleHover : MonoBehaviour
         if (!isHovered) return; // If it's not hovered anymore, return
         transform.localScale = originalScale; // Change the card scale to the original
         isHovered = false; // Set the hover to false
-    } 
+    }
+
+    // public void PlayCard()
+    // {
+    //     if (isHovered)
+    //     {
+    //         if (Input.GetMouseButtonDown(0))
+    //         {
+    //             transform.SetParent(playArea);
+    //         }
+    //     }
+    // }
 }
