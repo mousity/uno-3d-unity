@@ -3,7 +3,6 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-
 public enum GameState // Enum options with possible gamestates
     {
         StartGame,
