@@ -4,8 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.DualShock.LowLevel;
 
-public class EnemyText : MonoBehaviour
-{
+public class EnemyText : MonoBehaviour{
+
     public EnemyLines lines;
     private Vector3 bubbleSize;
     private float duration = 0.5f;
