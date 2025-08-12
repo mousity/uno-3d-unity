@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
                     {
                         hitObject.transform.SetParent(playAreaObject);
                         playArea.ModifyPlayArea(hitObject);
+                        turnFinished = true;
+                        Debug.Log("current turn is " + currentState);
                     }
                 }
             }
@@ -95,6 +97,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(spawner.DrawMultipleCards(currentState)); // Start drawing all cards
         textBox.SetActive(false); // Turn off the textBox
         currentState = GameState.PlayerTurn;
+        yield return StartCoroutine(GameLoop());
     }
 
     IEnumerator PlayerTurn()
