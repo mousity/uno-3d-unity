@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log(currentState);
                     spawner.DrawRandomCard(currentState); // Draw a card
                 }
-                else if (parent.CompareTag("PlayerHand"))
+                else if (parent.CompareTag("PlayerHand") && (currentState == GameState.PlayerTurn))
                 {
                     CardData recentCard = playArea.GetMostRecentCard().GetComponent<CardDisplay>().cardData;
                     CardData hoveredCard = hitObject.GetComponent<CardDisplay>().cardData;
