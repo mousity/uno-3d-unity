@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     private RaycastHit rayHit;
     public PlayAreaManager playArea;
     public Transform playAreaObject;
+    public Transform playerHand;
+    public Transform enemyHand;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,6 +64,7 @@ public class GameManager : MonoBehaviour
                         hitObject.transform.SetParent(playAreaObject);
                         playArea.ModifyPlayArea(hitObject);
                         turnFinished = true;
+                        playerHand.GetComponent<ArcCards>().SpaceCards();
                         Debug.Log("current turn is " + currentState);
                     }
                 }
@@ -110,9 +114,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
     }
 
-    public void PlayCard()
-    {
-        //if()
-    }
 
 }
